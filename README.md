@@ -25,8 +25,7 @@ Add rules below in rules section.
     "reselect/maximum-arity": "error",
     "reselect/second-param-destructured": "error",
     "reselect/call": "error",
-    "reselect/prefer-create-selector": "warn",
-    "reselect/prefer-create-structured-selector": "warn"
+    "reselect/prefer-create-selector": "warn"
   }
 }
 ```
@@ -53,7 +52,6 @@ Add rules below in rules section.
   * Function called with 2 parameters
   * First parameter must be `state`
 * reselect/prefer-create-selector: Instead of use selector in selector, prefer use of createSelector function. 
-* reselect/prefer-create-structured-selector: Instead of use selector in selector, prefer use of createStructuredSelector function. 
 
 All rules except `reselect/call` are triggered when :
  * `reselect` is imported
