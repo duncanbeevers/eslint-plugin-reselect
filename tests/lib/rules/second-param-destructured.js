@@ -22,21 +22,21 @@ ruleTester.run('second-param-destructured', rule, {
   valid: []
     .concat([
       {
-        code: 
+        code:
 `import { createSelector } from 'reselect';
 const getView = (state, { id }) => state;`,
         parserOptions: parserOptions
       },
       {
-        code: 
-`const getTiew = (one, two, three) => one;`,
+        code:
+`const getView = (one, two, three) => one;`,
         parserOptions: parserOptions
-      },      
+      },
     ]),
   invalid: []
     .concat([
       {
-        code: 
+        code:
 `import { createSelector } from 'reselect';
 const getFoo = function(state, id) { return true; }`,
         errors: [{
@@ -48,7 +48,7 @@ const getFoo = function(state, id) { return true; }`,
         parserOptions: parserOptions
       },
       {
-        code: 
+        code:
 `import { createSelector } from 'reselect';
 const getFoo = (state, id) => true`,
         errors: [{
@@ -60,7 +60,7 @@ const getFoo = (state, id) => true`,
         parserOptions: parserOptions
       },
       {
-        code: 
+        code:
 `import { createSelector } from 'reselect';
 export const getFoo = (state, id) => true`,
         errors: [{
@@ -72,7 +72,7 @@ export const getFoo = (state, id) => true`,
         parserOptions: parserOptions
       },
       {
-        code: 
+        code:
 `import { createSelector } from 'reselect';
 export function getFoo(state, id) { return true }`,
         errors: [{
@@ -84,7 +84,7 @@ export function getFoo(state, id) { return true }`,
         parserOptions: parserOptions
       },
       {
-        code: 
+        code:
 `import { createSelector } from 'reselect';
 const getFoo = createSelector(
   (state, id) => state,
@@ -105,7 +105,7 @@ const getFoo = createSelector(
             type: 'Identifier'
           }
         ],
-        parserOptions: parserOptions        
+        parserOptions: parserOptions
       }
     ])
 })

@@ -36,7 +36,7 @@ const getView = (st, { id }) => state;`,
       },
       {
         code:
-'const getTiew = (one, two, three) => one;',
+'const getView = (one, two, three) => one;',
         parserOptions,
       },
     ]),
