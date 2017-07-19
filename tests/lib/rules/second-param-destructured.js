@@ -17,7 +17,7 @@ const parserOptions = {
 // Tests
 // ------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester()
+const ruleTester = new RuleTester();
 ruleTester.run('second-param-destructured', rule, {
   valid: []
     .concat([
@@ -30,6 +30,12 @@ const getView = (state, { id }) => state;`,
       {
         code:
 'const getView = (one, two, three) => one;',
+        parserOptions,
+      },
+      {
+        code:
+'const selectView = (one, two, three) => one;',
+        settings: { 'reselect/selectorMethodPrefix': 'select' },
         parserOptions,
       },
     ]),
@@ -106,6 +112,19 @@ const getFoo = createSelector(
           },
         ],
         parserOptions,
-      }
+      },
+      {
+        code:
+`import { createSelector } from 'reselect';
+const selectFoo = function(state, id) { return true; }`,
+        settings: { 'reselect/selectorMethodPrefix': 'select' },
+        errors: [{
+          message: 'Second argument must be destructured',
+          line: 2,
+          column: 35,
+          type: 'Identifier',
+        }],
+        parserOptions,
+      },
     ]),
 });

@@ -52,6 +52,16 @@ const getFoo = (state) => ({
 })`,
         parserOptions,
       },
+      {
+        code:
+`import 'reselect';
+const selectFoo = (state) => ({
+  a: selectA(state),
+  b: selectB(state)
+})`,
+        settings: { 'reselect/selectorMethodPrefix': 'select' },
+        parserOptions,
+      },
     ]),
   invalid: []
     .concat([
@@ -109,6 +119,21 @@ export const getTest = (state) => getFoo(state);`,
             message: 'Prefer use of createSelector function',
             line: 2,
             column: 35,
+            type: 'CallExpression',
+          },
+        ],
+        parserOptions,
+      },
+      {
+        code:
+`import { createSelector } from 'reselect';
+export const selectTest = (state) => selectFoo(state);`,
+        settings: { 'reselect/selectorMethodPrefix': 'select' },
+        errors: [
+          {
+            message: 'Prefer use of createSelector function',
+            line: 2,
+            column: 38,
             type: 'CallExpression',
           },
         ],

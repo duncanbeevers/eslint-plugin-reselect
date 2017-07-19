@@ -56,13 +56,26 @@ const getFoo = function(state, id, foo) { return true; }`,
       },
       {
         code:
-`import { createSelector } from 'reselect';
+`import 'reselect';
 export default (state, foo, bar) => state;`,
         errors: [{
           message: 'Maximum arity in selector must be 2',
           line: 2,
           column: 16,
           type: 'ArrowFunctionExpression',
+        }],
+        parserOptions,
+      },
+      {
+        code:
+`import 'reselect';
+const selectFoo = function(state, id, foo) { return true; }`,
+        settings: { 'reselect/selectorMethodPrefix': 'select' },
+        errors: [{
+          message: 'Maximum arity in selector must be 2',
+          line: 2,
+          column: 19,
+          type: 'FunctionExpression',
         }],
         parserOptions,
       },

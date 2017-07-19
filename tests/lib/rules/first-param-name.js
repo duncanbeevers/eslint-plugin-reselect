@@ -39,6 +39,25 @@ const getView = (st, { id }) => state;`,
 'const getView = (one, two, three) => one;',
         parserOptions,
       },
+      {
+        code:
+'const selectView = (one, two, three) => one;',
+        settings: { 'reselect/selectorMethodPrefix': 'select' },
+        parserOptions,
+      },
+      {
+        code:
+'const getView = (appState) => one;',
+        settings: { 'reselect/stateParamName': 'appState' },
+        parserOptions,
+      },
+      {
+        code:
+'const getView = (st) => one;',
+        options: ['st'],
+        settings: { 'reselect/stateParamName': 'appState' },
+        parserOptions,
+      },
     ]),
   invalid: []
     .concat([
@@ -120,6 +139,85 @@ const getFoo = createSelector(
             message: 'First parameter must be named \'st\'',
             line: 3,
             column: 4,
+            type: 'Identifier',
+          },
+        ],
+        parserOptions,
+      },
+      {
+        code:
+`import 'reselect';
+const selectView = (one, two, three) => one;`,
+        settings: { 'reselect/selectorMethodPrefix': 'select' },
+        errors: [
+          {
+            message: 'First parameter must be named \'state\'',
+            line: 2,
+            column: 21,
+            type: 'Identifier',
+          },
+        ],
+        parserOptions,
+      },
+      {
+        code:
+`import 'reselect';
+const selectView = (one, two, three) => one;`,
+        settings: { 'reselect/selectorMethodPrefix': 'select' },
+        errors: [
+          {
+            message: 'First parameter must be named \'state\'',
+            line: 2,
+            column: 21,
+            type: 'Identifier',
+          },
+        ],
+        parserOptions,
+      },
+      {
+        code:
+`import 'reselect';
+const getView = (state) => one;`,
+        settings: { 'reselect/stateParamName': 'appState' },
+        errors: [
+          {
+            message: 'First parameter must be named \'appState\'',
+            line: 2,
+            column: 18,
+            type: 'Identifier',
+          },
+        ],
+        parserOptions,
+      },
+      {
+        code:
+`import 'reselect';
+const selectView = (state) => one;`,
+        settings: {
+          'reselect/selectorMethodPrefix': 'select',
+          'reselect/stateParamName': 'appState',
+        },
+        errors: [
+          {
+            message: 'First parameter must be named \'appState\'',
+            line: 2,
+            column: 21,
+            type: 'Identifier',
+          },
+        ],
+        parserOptions,
+      },
+      {
+        code:
+`import 'reselect';
+const getView = (appState) => one;`,
+        options: ['st'],
+        settings: { 'reselect/stateParamName': 'appState' },
+        errors: [
+          {
+            message: 'First parameter must be named \'st\'',
+            line: 2,
+            column: 18,
             type: 'Identifier',
           },
         ],

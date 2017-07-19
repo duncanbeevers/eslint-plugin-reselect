@@ -41,6 +41,27 @@ ruleTester.run('call', rule, {
 'const foo = getFoo(state);',
         parserOptions,
       },
+      {
+        code:
+'const foo = selectFoo(state);',
+        settings: { 'reselect/selectorMethodPrefix': 'select' },
+        parserOptions,
+      },
+      {
+        code:
+'const foo = getFoo(appState);',
+        settings: { 'reselect/stateParamName': 'appState' },
+        parserOptions,
+      },
+      {
+        code:
+'const foo = selectFoo(appState);',
+        settings: {
+          'reselect/selectorMethodPrefix': 'select',
+          'reselect/stateParamName': 'appState',
+        },
+        parserOptions,
+      },
     ]),
   invalid: []
     .concat([
@@ -63,6 +84,45 @@ ruleTester.run('call', rule, {
           message: 'Second argument must be an object declaration',
           line: 1,
           column: 26,
+          type: 'Identifier',
+        }],
+        parserOptions,
+      },
+      {
+        code:
+'const foo = selectFoo(state, id);',
+        settings: { 'reselect/selectorMethodPrefix': 'select' },
+        errors: [{
+          message: 'Second argument must be an object declaration',
+          line: 1,
+          column: 30,
+          type: 'Identifier',
+        }],
+        parserOptions,
+      },
+      {
+        code:
+'const foo = getFoo(appState, id);',
+        settings: { 'reselect/stateParamName': 'appState' },
+        errors: [{
+          message: 'Second argument must be an object declaration',
+          line: 1,
+          column: 30,
+          type: 'Identifier',
+        }],
+        parserOptions,
+      },
+      {
+        code:
+'const foo = selectFoo(appState, id);',
+        settings: {
+          'reselect/selectorMethodPrefix': 'select',
+          'reselect/stateParamName': 'appState',
+        },
+        errors: [{
+          message: 'Second argument must be an object declaration',
+          line: 1,
+          column: 33,
           type: 'Identifier',
         }],
         parserOptions,

@@ -32,7 +32,7 @@ Add rules below in rules section.
 
 # List of supported rules
 
-* reselect/first-param-name: First param must be named `state`. Name can be configured. Here is an example with `fullState`: 
+* reselect/first-param-name: First param must be named `state`. Name can be configured. Here is an example with `fullState`:
 ```js
 "rules": {
 	...
@@ -46,22 +46,22 @@ Add rules below in rules section.
     "reselect/maximum-arity": ["error", 3],
     ...
 ```
-* reselect/second-param-destructured: Second argument must be a destructuring object. 
+* reselect/second-param-destructured: Second argument must be a destructuring object.
 * reselect/call: When calling a selector function, second argument must be an object declaration. Selector call is identified like this:
-  * Called function  begins with `get`
+  * Called function  begins with `get`, unless otherwise configured in eslint settings
   * Function called with 2 parameters
-  * First parameter must be `state`
-* reselect/prefer-create-selector: Instead of use selector in selector, prefer use of createSelector function. 
+  * First parameter must be `state`, unless otherwise configured in eslint settings
+* reselect/prefer-create-selector: Instead of use selector in selector, prefer use of createSelector function.
 
 All rules except `reselect/call` are triggered when :
  * `reselect` is imported
- * function name begins with `get`
+ * function name begins with `get`, or is otherwise configured in eslint settings
  * function at root level (exported or not)
  * functions in createSelector calls (not the latest)
 
 If you don't use [Reselect](https://github.com/reactjs/reselect) in your selector file, you can just import [Reselect](https://github.com/reactjs/reselect) like this to enable rules
 
-```js 
+```js
 import 'reselect';
 ```
 
