@@ -107,5 +107,23 @@ const getFoo = createSelector(
         ],
         parserOptions,
       },
+      {
+        code:
+`import { createSelector } from 'reselect';
+const getFoo = createSelector(
+  (state, id) => state,
+  s => s
+)`,
+        options: ['st'],
+        errors: [
+          {
+            message: 'First parameter must be named \'st\'',
+            line: 3,
+            column: 4,
+            type: 'Identifier',
+          },
+        ],
+        parserOptions,
+      },
     ]),
 });
